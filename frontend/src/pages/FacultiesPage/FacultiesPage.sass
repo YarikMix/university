@@ -1,0 +1,67 @@
+@import "../../styles/variables.sass"
+
+.faculties-wrapper
+	color: #fff
+	display: flex
+	border-radius: 10px
+	background-color: $secondary
+	width: 100%
+	flex-direction: column
+	position: relative
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+
+	@media screen and (max-width: 520px)
+		border-radius: 0
+
+	.faculties-filters-container
+		width: 100%
+		display: flex
+		flex-direction: column
+		padding: 20px 50px
+
+		@media screen and (max-width: 520px)
+			padding: 20px
+
+		.top
+			width: 100%
+			display: flex
+			align-items: center
+			justify-content: space-between
+			gap: 25px
+
+			@media screen and (max-width: 1024px)
+				flex-direction: column
+
+			@media screen and (max-width: 420px)
+				padding: 0
+
+			.left
+				h3
+					font-size: 28px
+					font-weight: 500
+
+					@media screen and (max-width: 720px)
+						margin: 0 0 20px 0
+			.right
+				display: flex
+				justify-content: flex-end
+				gap: 25px
+				width: 100%
+
+				@media screen and (max-width: 1024px)
+					justify-content: center
+
+		.bottom
+			width: 100%
+
+	.faculties-list-wrapper
+		display: grid
+		grid-template-columns: repeat(auto-fit, minmax(280px, 0.15fr))
+		grid-column-gap: 25px
+		grid-row-gap: 25px
+		justify-content: center
+		width: 100%
+		background: #2a2f3b
+		padding: 50px
+		border-radius: 10px
+		min-height: 531px

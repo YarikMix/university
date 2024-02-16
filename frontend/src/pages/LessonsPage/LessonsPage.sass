@@ -1,0 +1,30 @@
+@import "../../styles/variables.sass"
+
+.lessons-wrapper
+	color: #fff
+	display: flex
+	border-radius: 10px
+	background-color: #2a2f3b
+	width: 100%
+	flex-direction: column
+	position: relative
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+	overflow: hidden
+
+	@media screen and (max-width: 520px)
+		border-radius: 0
+
+	.top
+		width: 100%
+		background: $secondary
+		display: flex
+		padding: 25px
+
+		@media (max-width: 520px)
+			padding: 20px
+
+	.bottom
+		display: flex
+		flex-direction: column
+		width: 100%
+

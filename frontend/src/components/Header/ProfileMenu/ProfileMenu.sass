@@ -1,0 +1,55 @@
+@import "../../../styles/variables.sass"
+
+.profile-menu-wrapper
+	display: flex
+	align-items: center
+
+	.menu-wrapper
+		display: flex
+		gap: 50px
+
+		@media screen and (max-width: 1024px)
+			width: 100%
+			height: 100vh
+			z-index: 1000
+			top: 80px
+			transition: right 0.5s
+			position: fixed
+			flex-direction: column
+			gap: 0
+			right: -100%
+			background: $secondary
+
+			.menu-item
+				width: 100%
+				padding: 30px
+				transition: 0.3s ease
+
+				&:hover
+					background: #2a2f3b
+
+		&.open
+			right: 0
+
+		.menu-item
+			cursor: pointer
+			display: flex
+			justify-content: center
+			align-items: center
+			position: relative
+			text-decoration: none
+
+			&:hover
+				.item
+					color: $primary
+
+					@media screen and (max-width: 1024px)
+						color: #fff
+
+			.item
+				color: #fff
+				font-size: 20px
+				transition: 0.2s ease
+
+
+

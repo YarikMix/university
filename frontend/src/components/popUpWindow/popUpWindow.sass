@@ -1,0 +1,59 @@
+@import "../../styles/variables.sass"
+
+.modal-wrapper
+	position: fixed
+	top: -110vh
+	left: 0
+	width: 100%
+	height: 100%
+	display: flex
+	justify-content: center
+	align-items: center
+	transition: top 0ms ease-in-out 300ms
+
+	&.active
+		top: 0
+		transition: top 0ms ease-in-out 0ms
+
+		.overlay
+			opacity: 1
+			transition: all 300ms ease-in-out
+
+		.modal-content
+			transform: scale(1)
+			opacity: 1
+
+	.overlay
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		background: rgba(0,0,0,0.5)
+		opacity: 0
+		transition: all 3s ease
+
+	.modal-content
+		position: absolute
+		background: $secondary
+		padding: 20px
+		border-radius: 20px
+		box-shadow: 0 2px 2px 5px rgba(0, 0, 0, 0.05)
+		transition: all 300ms ease-in-out
+		transform: scale(1.15)
+		opacity: 0
+		display: flex
+		flex-direction: column
+		overflow: hidden
+
+		.close-button-container
+			position: absolute
+			top: 25px
+			right: 25px
+			width: 28px
+			height: 28px
+
+			.close-button
+				font-size: 28px
+				cursor: pointer
+				color: #fff

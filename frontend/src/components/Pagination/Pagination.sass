@@ -1,0 +1,56 @@
+@import "../../styles/variables.sass"
+
+.pagination-wrapper
+	display: flex
+	width: 100%
+	justify-content: flex-end
+	padding: 25px
+
+	.pagination-container
+		display: flex
+		align-items: center
+		justify-content: center
+		background-color: $secondary
+		padding: 15px
+		border-radius: 12px
+		column-gap: 12px
+		box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1)
+
+		.links-container
+			display: flex
+			align-items: center
+			column-gap: 12px
+
+			span
+				color: #fff
+
+		.button
+			width: 45px
+			height: 45px
+			display: flex
+			justify-content: center
+			align-items: center
+			padding: 5px
+			border: none
+			outline: none
+			background: #f0f2f5
+			color: #666
+			cursor: pointer
+			font-size: 16px
+			border-radius: 5px
+			transition: 0.2s ease
+
+			&:hover
+				transform: scale(1.05)
+
+			&:active
+				transform: scale(0.96)
+
+
+			&:hover, &.selected
+				background-color: $primary
+				color: #fff
+
+			&:disabled
+				color: #b3b3b3
+				pointer-events: none

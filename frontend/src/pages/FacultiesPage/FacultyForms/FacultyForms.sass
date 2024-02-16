@@ -1,0 +1,82 @@
+@import "../../../styles/variables.sass"
+
+.faculty-form-wrapper
+	width: 300px
+	background: $secondary
+	display: flex
+	flex-direction: column
+	gap: 25px
+
+	.top
+		width: 100%
+		display: flex
+		justify-content: center
+
+		.container
+			display: flex
+			justify-content: center
+			align-items: center
+			position: relative
+			background: #2a2d35
+			border-radius: 50%
+			width: 160px
+			height: 160px
+
+			img
+				width: 70%
+				height: 70%
+				pointer-events: none
+
+			.round
+				position: absolute
+				bottom: 8px
+				right: 4px
+				background: $primary
+				width: 36px
+				height: 36px
+				display: flex
+				justify-content: center
+				align-items: center
+				border-radius: 50%
+				overflow: hidden
+				transition: 0.2s ease
+
+				&:hover
+					transform: scale(1.05)
+
+				&:active
+					transform: scale(0.96)
+
+				svg
+					color: #fff
+					font-size: 18px
+					transition: 0.2s ease
+
+				input
+					position: absolute
+					transform: scale(2)
+					opacity: 0
+					cursor: pointer
+
+	.center
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+
+		input
+			width: 200px
+			background-color: #2a2f3b
+			border: none
+			margin: 8px 0
+			padding: 10px 15px
+			font-size: 16px
+			border-radius: 8px
+			outline: none
+
+	.bottom
+		width: 100%
+		display: flex
+		justify-content: center
+		align-items: center
+		gap: 25px

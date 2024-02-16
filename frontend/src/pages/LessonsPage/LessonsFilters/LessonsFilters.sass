@@ -1,0 +1,51 @@
+@import "../../../styles/variables.sass"
+
+.lessons-filters-wrapper
+	width: 100%
+	display: flex
+	align-items: center
+	gap: 25px
+
+	@media screen and (max-width: 1080px)
+		flex-direction: column
+
+	.top-container
+		h3
+			font-size: 28px
+
+	.bottom-container
+		display: flex
+		justify-content: flex-end
+		align-items: center
+		gap: 25px
+		flex: 1
+
+		@media screen and (max-width: 1080px)
+			flex-direction: column
+
+		.rs-picker
+			color: #fff
+			z-index: 0
+
+			@media screen and (max-width: 1080px)
+				margin-right: 0
+
+			.rs-picker-toggle-active
+				box-shadow: none
+
+			.rs-picker-toggle
+				background-color: #2a2f3b !important
+				color: #fff
+				border: 1px solid #2a2f3b
+
+				&:hover
+					border-color: $primary
+
+				.rs-picker-toggle-value
+					color: #fff !important
+
+			.rs-picker-toggle-textbox
+				background-color: #373c4f !important
+				color: #fff !important
+				opacity: 0 !important
+				cursor: pointer

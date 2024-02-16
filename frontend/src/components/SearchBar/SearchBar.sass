@@ -1,0 +1,48 @@
+@import "../../styles/variables.sass"
+
+
+.search-bar
+	background: rgba(255, 255, 255, 0.2)
+	display: flex
+	align-items: center
+	border-radius: 60px
+	padding: 0 10px
+	backdrop-filter: blur(4px) saturate(180%)
+	position: relative
+
+	@media screen and (max-width: 1320px)
+		padding: 0
+		width: 100%
+
+	input
+		width: 100%
+		background: transparent
+		flex: 1
+		border: 0
+		outline: none
+		padding: 16px 20px
+		font-size: 16px
+		color: #cac7ff
+
+		&::placeholder
+			color: #cac7ff
+
+	button
+		border: 0
+		border-radius: 50%
+		width: 40px
+		height: 40px
+		background: $secondary
+		cursor: pointer
+		display: flex
+		justify-content: center
+		align-items: center
+		position: absolute
+		right: 12px
+
+		&:hover
+			transform: scale(1.05)
+
+		.search-icon
+			font-size: 18px
+			color: #fff

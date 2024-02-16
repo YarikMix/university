@@ -1,0 +1,27 @@
+@import "src/styles/variables.sass"
+
+.groups-wrapper
+	color: #fff
+	display: flex
+	border-radius: 10px
+	overflow: hidden
+	background-color: $secondary
+	width: 100%
+	flex-direction: column
+	position: relative
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+
+	@media screen and (max-width: 520px)
+		border-radius: 0
+
+	.group-list-wrapper
+		display: grid
+		grid-template-columns: repeat(auto-fit, minmax(280px, 0.15fr))
+		grid-column-gap: 25px
+		grid-row-gap: 25px
+		justify-content: center
+		width: 100%
+		background: #2a2f3b
+		min-height: 390px
+		padding: 50px
+		border-radius: 10px

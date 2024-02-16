@@ -1,0 +1,62 @@
+@import "../../../styles/variables.sass"
+
+.group-info-wrapper
+	width: 100%
+	display: flex
+	background: $secondary
+	border-radius: 15px
+	padding: 50px
+	margin-bottom: 50px
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+
+	@media screen and (max-width: 768px)
+		padding: 25px
+
+	@media screen and (max-width: 520px)
+		padding: 10px
+		border-radius: 0
+
+	.faculty-image
+		width: 250px
+		height: 250px
+		margin-right: 50px
+
+		@media screen and (max-width: 768px)
+			width: 150px
+			height: 150px
+			margin-right: 35px
+
+		@media screen and (max-width: 520px)
+			width: 100px
+			height: 100px
+			margin-right: 25px
+
+	.group-info-details
+		display: flex
+		flex-direction: column
+
+		h3
+			color: #fff
+			font-size: 36px
+			margin-bottom: 15px
+
+			@media screen and (max-width: 768px)
+				font-size: 28px
+
+			@media screen and (max-width: 768px)
+				font-size: 22px
+				margin-bottom: 5px
+
+		span
+			color: #fff
+			line-height: 35px
+			font-size: 22px
+			font-weight: 500
+
+			@media screen and (max-width: 768px)
+				font-size: 18px
+				line-height: 30px
+
+			@media screen and (max-width: 768px)
+				font-size: 14px
+				line-height: 24px

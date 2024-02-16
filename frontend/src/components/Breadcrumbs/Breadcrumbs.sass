@@ -1,0 +1,43 @@
+@import "../../styles/variables.sass"
+
+
+.breadcrumbs
+	border-radius: 15px
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+	width: fit-content
+	background: $secondary
+	padding: 10px 24px
+	display: flex
+
+	@media screen and (max-width: 520px)
+		padding: 10px 12px
+
+	.crumb
+		display: flex
+		align-items: center
+
+		&:last-child:after
+			display: none
+
+		.home-icon
+			color: #fff
+			margin-right: 10px
+			font-size: 20px
+
+			@media screen and (max-width: 479px)
+				margin-right: 5px
+
+		.chevron-icon
+			color: #fff
+
+		a
+			font-size: 20px
+			text-decoration: none
+			display: flex
+			align-items: center
+			color: #fff
+			padding: 0 10px
+
+			@media screen and (max-width: 479px)
+				font-size: 18px
+				padding: 0 5px

@@ -1,0 +1,106 @@
+@import "../../styles/variables.sass"
+
+.lesson-page-wrapper
+	width: 100%
+	background: $secondary
+	border-radius: 10px
+	box-shadow: 0 4px 30px -10px rgba(0, 0, 0, 0.2)
+	display: flex
+	flex-direction: column
+	justify-content: space-between
+	min-height: 600px
+
+	@media screen and (max-width: 520px)
+		border-radius: 0
+
+	&.empty
+		justify-content: center
+		align-items: center
+
+		h1
+			color: #fff
+
+	.top-container
+		width: 100%
+		display: flex
+		border-bottom: 1px solid #fff
+		padding: 25px 50px
+
+		h3
+			color: #fff
+			font-size: 28px
+
+			@media screen and (max-width: 520px)
+				font-size: 22px
+
+	.bottom-container
+		padding: 25px 50px
+		width: 100%
+		display: flex
+		justify-content: space-between
+
+		@media screen and (max-width: 1079px)
+			flex-direction: column
+			justify-content: center
+			gap: 50px
+
+		@media screen and (max-width: 520px)
+			padding: 25px 25px
+
+		.left-container
+			display: flex
+			flex-direction: column
+			justify-content: space-between
+			gap: 50px
+
+			@media screen and (max-width: 1079px)
+				flex-direction: column
+				justify-content: center
+				align-items: center
+				gap: 50px
+
+			.inputs-container
+				display: flex
+				flex-direction: column
+				gap: 15px
+
+				@media screen and (max-width: 420px)
+					width: 100%
+
+				.groups-tag-list-wrapper
+					margin-bottom: 15px
+
+				.input-container
+					display: flex
+					flex-direction: column
+
+					span
+						color: #fff
+
+					input
+						background-color: #eee
+						border: none
+						margin: 8px 0
+						padding: 10px 15px
+						font-size: 16px
+						border-radius: 8px
+						width: 100%
+						outline: none
+
+			.buttons-container
+				width: 300px
+				display: flex
+				gap: 25px
+
+				@media screen and (max-width: 1079px)
+					justify-content: center
+
+				@media screen and (max-width: 578px)
+					flex-direction: column
+
+				@media screen and (max-width: 420px)
+					width: 100%
+
+		.right-container
+			display: flex
+			justify-content: center

@@ -1,0 +1,100 @@
+@import "../../../styles/variables.sass"
+
+$block: 50px
+
+.group-schedule-wrapper
+	display: flex
+	flex-direction: column
+	background: $secondary
+	border-radius: 15px
+
+	@media screen and (max-width: 420px)
+		min-width: 275px
+
+	.top
+		display: flex
+		justify-content: flex-end
+		width: 100%
+
+		.lesson-time
+			background: #2a2f3b
+			padding: 10px
+			border-radius: 10px
+			display: flex
+			justify-content: center
+			width: calc(100% - 2 * $block)
+
+			@media screen and (max-width: 420px)
+				width: 100%
+
+			span
+				color: #ffffff
+
+	.bottom
+		width: 100%
+
+		.days-container
+			display: flex
+			width: 100%
+
+			.corner
+				width: 2 * $block
+
+				@media screen and (max-width: 420px)
+					width: 0
+
+			.days
+				display: flex
+				width: calc(100% - 2 * $block)
+
+				@media screen and (max-width: 420px)
+					width: 100%
+
+				.day
+					display: flex
+					justify-content: center
+					flex: 1
+					padding: 10px
+
+					span
+						color: #fff
+						font-size: 14px
+
+						@media screen and (max-width: 768px)
+							font-size: 12px
+
+		.lessons-container
+			display: flex
+			flex-direction: column
+			gap: 2px
+
+			.week
+				display: flex
+				height: $block
+				width: 400px
+
+				@media screen and (max-width: 420px)
+					width: 100%
+
+				.time
+					display: flex
+					align-items: center
+					width: 2 * $block
+
+					@media screen and (max-width: 768px)
+						padding: 5px
+
+						span
+							font-size: 12px
+
+					span
+						color: #fff
+						font-size: 16px
+
+				.lessons
+					width: calc(100% - 2 * $block)
+					display: flex
+					gap: 2px
+
+					@media screen and (max-width: 420px)
+						width: 100%
