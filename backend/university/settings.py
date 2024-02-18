@@ -75,8 +75,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'university',
-        'USER': 'yarik',
-        'PASSWORD': 'yarik',
+        'USER': 'yaroslav',
+        'PASSWORD': 'yaroslav',
     }
 }
 
@@ -153,12 +153,10 @@ CACHES = {
     }
 }
 
-
-
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'images'
-AWS_ACCESS_KEY_ID = 'eqJtuhEaRJZCjAdSUmQ7'
-AWS_SECRET_ACCESS_KEY = 'vODW233kxVs0FKzOIINyWMLocavDk32VzJgnien4'
+AWS_ACCESS_KEY_ID = '4WaDxNJf1GH6qjhjy6ER'
+AWS_SECRET_ACCESS_KEY = 'G11EkeAc7RJkfNQ1QsHBU8eOI59f3IwHx5JoI16u'
 AWS_S3_ENDPOINT_URL = 'http://127.0.0.1:9000'
 
 REMOTE_WEB_SERVICE_AUTH_TOKEN = 123
