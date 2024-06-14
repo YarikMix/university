@@ -1,8 +1,6 @@
 import "./LessonPage.sass"
 import LessonTimePicker from "./LessonTimePicker/LessonTimePicker";
-import TrashButton from "/src/components/TrashButton/TrashButton";
 import {useDraftLesson} from "/src/hooks/lessons/useDraftLesson";
-import {useToken} from "/src/hooks/users/useToken";
 import {
 	infoMessage,
 	lessonAddMessage,
@@ -14,15 +12,12 @@ import {useNavigate} from "react-router-dom";
 import CustomButton from "/src/components/CustomButton/CustomButton";
 import {variables} from "/src/utils/variables";
 import {useEffect} from "react";
-import * as React from "react";
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 import LessonForm from "./LessonForm/LessonForm";
 
 const LessonPage = () => {
 
 	const {lesson, busy_days, setLesson, saveLesson, fetchBusyDays} = useDraftLesson()
-
-	const {access_token} = useToken()
 
 	useEffect(() => {
 		if (!lesson) {
@@ -40,11 +35,7 @@ const LessonPage = () => {
 
 		try {
 
-			const response = await api.delete(`lessons/${lesson.id}/delete/`, {
-				headers: {
-					'authorization': access_token
-				}
-			})
+			const response = await api.delete(`lessons/${lesson.id}/delete/`)
 
 			if (response.status == 200)
 			{
@@ -52,7 +43,7 @@ const LessonPage = () => {
 
 				lessonDeleteMessage(lesson.id)
 
-				navigate("/groups-list")
+				navigate("/groups")
 			}
 
 		} catch (e) {
@@ -64,11 +55,7 @@ const LessonPage = () => {
 
 		try {
 
-			const response = await api.put(`lessons/${lesson.id}/update_status_user/`, {}, {
-				headers: {
-					'authorization': access_token
-				}
-			})
+			const response = await api.put(`lessons/${lesson.id}/update_status_user/`)
 
 			if (response.status == 200) {
 

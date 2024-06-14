@@ -37,7 +37,7 @@ const TopPanelWrapper = () => {
 	return (
 		<div className="top-panels-wrapper">
 			<Breadcrumbs />
-			{is_authenticated && !is_moderator && location.pathname.endsWith("groups-list") && <LessonConstructor /> }
+			{is_authenticated && !is_moderator && location.pathname.endsWith("groups") && <LessonConstructor /> }
 		</div>
 	)
 }
@@ -88,7 +88,7 @@ function App() {
 
 									<Route path="/lessons/:id" element={<LessonPage />} />
 
-									<Route path="/groups-list" element={<GroupsList />} />
+									<Route path="/groups" element={<GroupsList />} />
 
 									<Route path="/groups-table" element={<GroupsTable />} />
 

@@ -3,8 +3,8 @@ import {useEffect, useState} from "react";
 import Hamburger from "../Hamburger/Hamburger";
 import {Link} from "react-router-dom";
 import UserInfo from "./UserInfo/UserInfo";
-import {useAuth} from "/src/hooks/users/useAuth";
-import {useDesktop} from "/src/hooks/other/useDesktop";
+import {useDesktop} from "../../../hooks/other/useDesktop.ts";
+import {useAuth} from "/src/hooks/users/useAuth.ts";
 
 const ProfileMenu = () => {
 
@@ -27,7 +27,7 @@ const ProfileMenu = () => {
                     <span className="item">Главная</span>
                 </Link>
 
-                <Link to="/groups-list" className="menu-item" onClick={(e) => setIsOpen(false)}>
+                <Link to="/groups" className="menu-item" onClick={(e) => setIsOpen(false)}>
                     <span className="item">Список групп</span>
                 </Link>
 

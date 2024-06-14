@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {updateOpen, updateGroup, updateGroupName, updateCourse, updateEducationType, updateFaculty, updateYearBegin, updateYearEnd} from "../../store/groups/groupEditFormSlice";
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 
 export function useGroupEditForm() {
     const isOpen = useSelector(state => state.groupEditForm.isOpen);

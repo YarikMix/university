@@ -1,13 +1,10 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {updateUser, cleanUser} from "../../store/users/authSlice";
-import {useToken} from "./useToken";
 import {errorMessage, successMessage} from "../../utils/toasts";
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 
 export function useAuth() {
 	const {is_authenticated, is_moderator, user_id, user_name, user_email} = useSelector(state => state.user)
-
-	const { access_token, setAccessToken, resetAccessToken } = useToken()
 
 	const dispatch = useDispatch()
 
@@ -23,15 +20,10 @@ export function useAuth() {
 
 		try {
 
-			const response = await api.post(`logout/`,  {}, {
-				headers: {
-					'authorization': access_token
-				}
-			})
+			const response = await api.post(`logout/`)
 
 			if (response.status == 200)
 			{
-				resetAccessToken()
 				resetUser()
 			}
 
@@ -46,11 +38,9 @@ export function useAuth() {
 
 		try {
 
-
 			const response = await api.post(`register/`, formData as FormData)
 
 			if (response.status == 201) {
-				setAccessToken(response.data["access_token"])
 				return true
 			}
 
@@ -71,8 +61,6 @@ export function useAuth() {
 
 		try {
 			const response = await api.post(`login/`, formData)
-
-			setAccessToken(response.data['access_token'])
 
 			const permissions = {
 				is_authenticated: true,
@@ -107,17 +95,9 @@ export function useAuth() {
 			return true
 		}
 
-		if (access_token === "undefined") {
-			return false
-		}
-
 		try {
 
-			const response = await api.post(`check/`, {}, {
-				headers: {
-					'authorization': access_token
-				}
-			})
+			const response = await api.post(`/check/`)
 
 			if (response.status == 200)
 			{

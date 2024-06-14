@@ -1,14 +1,12 @@
 import CustomButton from "../../../../components/CustomButton/CustomButton";
 import {variables} from "../../../../utils/variables";
-import TrashButton from "../../../../components/TrashButton/TrashButton";
 import PopUpWindow from "../../../../components/popUpWindow/popUpWindow";
-import {useGroupEditForm} from "../../../../hooks/groups/useGroupEditForm";
+import {useGroupEditForm} from "/src/hooks/groups/useGroupEditForm.ts";
 import DropdownMenu from "../../../../components/DropdownMenu/DropdownMenu";
-import {COURSES, EDUCATION_TYPES} from "../../../../utils/consts";
-import {useGroups} from "../../../../hooks/groups/useGroups";
-import {useToken} from "../../../../hooks/users/useToken";
-import {infoMessage} from "../../../../utils/toasts";
-import {api} from "../../../../utils/api";
+import {COURSES, EDUCATION_TYPES} from "/src/utils/consts.ts";
+import {useGroups} from "/src/hooks/groups/useGroups.ts";
+import {infoMessage} from "/src/utils/toasts.ts";
+import {api} from "/src/modules/api.ts";
 
 const EditGroupForm = ({refetch}) => {
 
@@ -24,16 +22,10 @@ const EditGroupForm = ({refetch}) => {
         infoMessage(`Группа '${group.name}' успешно удалена!`)
     }
 
-    const {access_token} = useToken()
-
     const saveButtonClicked = async () => {
 
         try {
-            await api.put(`groups/${group.id}/update_faculty/${group.faculty.id}/`, {},{
-                headers: {
-                    'authorization': access_token
-                }
-            })
+            await api.put(`groups/${group.id}/update_faculty/${group.faculty.id}/`)
 
             const data = {
                 "id": group.id,
@@ -45,11 +37,7 @@ const EditGroupForm = ({refetch}) => {
                 "year_end": group.year_end
             }
 
-            const response = await api.put(`groups/${group.id}/update/`, data,{
-                headers: {
-                    'authorization': access_token
-                }
-            })
+            const response = await api.put(`groups/${group.id}/update/`, data)
 
             if (response.status == 200){
                 closeForm()

@@ -37,9 +37,9 @@ const GroupCard = ({ group, refetch }: { group: Group }) => {
         <motion.div
             layout
             animate={{ opacity: 1, scale: 1 }}
-            initial={{ opacity: 0, scale: 0 }}
-            exit={{ opacity: 0, scale: 0 }}
-            whileHover={{scale: 1.1}}
+            initial={{ opacity: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 1 }}
+            whileHover={{scale: 1.05}}
             className="group"
             key={group.id}>
 

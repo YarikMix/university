@@ -1,23 +1,16 @@
 import "./GroupTag.sass"
 import {AiOutlineClose} from "react-icons/ai";
-import {useToken} from "/src/hooks/users/useToken";
 import {groupRemoveMessage} from "/src/utils/toasts";
 import {useDraftLesson} from "../../../hooks/lessons/useDraftLesson";
-import {api} from "/src/utils/api";
 import FacultyIcon from "../../FacultyIcon/FacultyIcon";
+import {api} from "/src/modules/api.ts";
 
 const GroupTag = ({lesson, group, readOnly}) => {
-
-	const { access_token } = useToken()
 
 	const { setGroups, setBusyDays } = useDraftLesson()
 
 	const removeGroup = async () => {
-		const response = await api.delete(`lessons/${lesson.id}/delete_group/${group.id}/`, {
-			headers: {
-				'authorization': access_token
-			}
-		});
+		const response = await api.delete(`lessons/${lesson.id}/delete_group/${group.id}/`);
 
 		setGroups(response.data["groups"])
 		setBusyDays(response.data["busy_days"])

@@ -1,4 +1,3 @@
-import debug_toolbar
 from django.contrib import admin
 from rest_framework import permissions
 from django.urls import path, include

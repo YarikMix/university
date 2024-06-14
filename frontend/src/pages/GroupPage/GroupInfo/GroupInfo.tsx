@@ -3,7 +3,7 @@ import FacultyIcon from "/src/components/FacultyIcon/FacultyIcon";
 import {useEffect} from "react";
 import {COURSES, EDUCATION_TYPES} from "/src/utils/consts";
 import {useGroup} from "/src/hooks/groups/useGroup";
-import {api} from "../../../utils/api";
+import { api } from "../../../modules/api";
 
 const GroupInfo = ({ group_id }) => {
 

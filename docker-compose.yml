@@ -1,0 +1,107 @@
+version: '3.7'
+
+services:
+  web:
+    build: ./backend
+    image: uzman
+    container_name: django
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "8000:8000"
+    environment:
+      AWS_ACCESS_KEY: minio
+      AWS_SECRET_KEY: minio123
+      AWS_BUCKET_NAME: images
+      PYTHONUNBUFFERED: 1
+    depends_on:
+      - migration
+      - pgdb
+      - minio
+      - redis
+
+  migration:
+    image: uzman
+    command: bash -c "python manage.py migrate --noinput && python manage.py fill_db"
+    volumes:
+      - ./backend:/usr/src/app
+    depends_on:
+      - pgdb
+
+  minio:
+    hostname: minio/minio:latest
+    image: quay.io/minio/minio:RELEASE.2022-10-15T19-57-03Z
+    command: server --console-address ":9001" /data/
+    environment:
+      MINIO_ACCESS_KEY: minio
+      MINIO_SECRET_KEY: minio123
+    expose:
+      - "9000"
+      - "9001"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:9000/minio/health/live" ]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    volumes:
+      - minio-data:/data
+
+  createbucket:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc config host add --api s3v4 s3 http://minio:9000 minio minio123;
+      /usr/bin/mc mb s3/images;
+      /usr/bin/mc anonymous set public s3/images;
+      "
+
+  nginx:
+    image: nginx:1.19.2-alpine
+    hostname: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    depends_on:
+      - minio
+
+  pgdb:
+    image: postgres:16.0-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: pgdb
+    volumes:
+      - type: volume
+        source: pgdbdata
+        target: /var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./backend:/usr/src/app/dаta:/root/redis
+      - ./backend:/usr/src/app/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
+
+  # client:
+  #   build: ./frontend
+  #   container_name: client_frontend
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - VITE_API_URL=http://django:8000
+
+volumes:
+  minio-data:
+  pgdbdata: null

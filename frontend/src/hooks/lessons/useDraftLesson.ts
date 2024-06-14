@@ -9,13 +9,10 @@ import {
 	updateTeacher,
 	updateBusyDays
 } from "../../store/lessons/draftLessonSlice"
-import {useToken} from "../users/useToken"
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 import {groupAddedMessage, groupAlreadyAddedMessage, groupRemoveMessage, requestErrorMessage} from "../../utils/toasts";
 
 export function useDraftLesson() {
-
-	const {access_token} = useToken()
 
 	const lesson = useSelector(state => state.draftLesson.lesson)
 
@@ -59,11 +56,7 @@ export function useDraftLesson() {
 
 	const saveLesson = async () => {
 
-		await api.put(`lessons/${lesson.id}/update/`, lesson,{
-			headers: {
-				'authorization': access_token
-			}
-		})
+		await api.put(`lessons/${lesson.id}/update/`, lesson)
 
 	}
 
@@ -79,11 +72,7 @@ export function useDraftLesson() {
 	const addGroupToLesson = async (group) => {
 
 		try {
-			const response = await api.post(`groups/${group.id}/add_to_lesson/`, {}, {
-				headers: {
-					'authorization': access_token
-				},
-			});
+			const response = await api.post(`groups/${group.id}/add_to_lesson/`);
 
 			if (response.status == 200) {
 				groupAddedMessage(group.name, response.data["id"])
@@ -101,11 +90,7 @@ export function useDraftLesson() {
 	}
 
 	const deleteGroupFromLesson = async (group) => {
-		const response = await api.delete(`lessons/${lesson.id}/delete_group/${group.id}/`, {
-			headers: {
-				'authorization': access_token
-			}
-		});
+		const response = await api.delete(`lessons/${lesson.id}/delete_group/${group.id}/`);
 
 		if (response.status == 200) {
 			setGroups(response.data["groups"])
@@ -114,11 +99,7 @@ export function useDraftLesson() {
 	}
 
 	const fetchLesson = async (lesson_id) => {
-		const {data} = await api.get(`lessons/${lesson_id}`, {
-			headers: {
-				'authorization': access_token
-			}
-		})
+		const {data} = await api.get(`lessons/${lesson_id}`)
 		setLesson(data)
 	}
 

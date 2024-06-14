@@ -18,6 +18,9 @@ access_token_lifetime = settings.JWT["ACCESS_TOKEN_LIFETIME"].total_seconds()
 
 def get_draft_lesson(request):
     token = get_access_token(request)
+    if token is None:
+        return None
+
     payload = get_jwt_payload(token)
     user_id = payload["user_id"]
 
@@ -463,6 +466,8 @@ def login(request):
 
 @api_view(["POST"])
 def register(request):
+    print("register")
+
     serializer = UserRegisterSerializer(data=request.data)
 
     if not serializer.is_valid():
@@ -492,7 +497,6 @@ def check(request):
     if token is None:
         message = {"message": "Token is not found"}
         return Response(message, status=status.HTTP_401_UNAUTHORIZED)
-
     if token in cache:
         message = {"message": "Token in blacklist"}
         return Response(message, status=status.HTTP_401_UNAUTHORIZED)

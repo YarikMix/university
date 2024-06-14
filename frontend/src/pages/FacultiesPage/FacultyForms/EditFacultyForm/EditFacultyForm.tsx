@@ -7,9 +7,8 @@ import {useEffect, useRef, useState} from "react";
 import TrashButton from "../../../../components/TrashButton/TrashButton";
 import {useFacultyEditForm} from "../../../../hooks/faculties/useFacultyEditForm";
 import {errorMessage, infoMessage, successMessage} from "../../../../utils/toasts";
-import {useToken} from "../../../../hooks/users/useToken";
 import {useFaculties} from "../../../../hooks/faculties/useFaculties";
-import {api} from "../../../../utils/api";
+import {api} from "/src/modules/api.ts";
 
 const EditFacultyForm = () => {
 
@@ -18,8 +17,6 @@ const EditFacultyForm = () => {
     const {setFaculties} = useFaculties()
 
     const [img, setImg] = useState<File | undefined>(undefined);
-
-    const {access_token} = useToken()
 
     const handleFileChange = (e) => {
         if (e.target.files) {
@@ -42,8 +39,7 @@ const EditFacultyForm = () => {
 
             const response = await api.put(`faculties/${faculty.id}/update/`, form_data, {
                 headers: {
-                    'content-type': 'multipart/form-data',
-                    'authorization': access_token
+                    'content-type': 'multipart/form-data'
                 }
             })
 
@@ -64,11 +60,7 @@ const EditFacultyForm = () => {
     const deleteButtonClicked = async () => {
         try {
 
-            const response = await api.delete(`faculties/${faculty.id}/delete/`, {
-                headers: {
-                    'authorization': access_token
-                }
-            })
+            const response = await api.delete(`faculties/${faculty.id}/delete/`)
 
             if (response.status == 200) {
                 infoMessage(`Факультет '${faculty.name}' успешно удалён!`)

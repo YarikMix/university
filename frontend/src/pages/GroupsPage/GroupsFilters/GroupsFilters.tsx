@@ -8,7 +8,6 @@ import {variables} from "../../../utils/variables";
 import {useGroups} from "../../../hooks/groups/useGroups";
 import {useGroupAddForm} from "../../../hooks/groups/useGroupAddForm";
 import {useAuth} from "../../../hooks/users/useAuth";
-import React from "react";
 import AddGroupForm from "../GroupsForms/AddGroupForm/AddGroupForm";
 import EditGroupForm from "../GroupsForms/EditGroupForm/EditGroupForm";
 

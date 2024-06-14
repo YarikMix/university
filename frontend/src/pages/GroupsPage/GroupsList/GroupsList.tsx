@@ -1,14 +1,17 @@
 import "./GroupsList.sass"
 import {AnimatePresence, motion} from "framer-motion";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import GroupCard from "./GroupCard/GroupCard";
-import {useGroups} from "../../../hooks/groups/useGroups";
 import GroupsFilters from "../GroupsFilters/GroupsFilters";
+import {useInView} from "react-intersection-observer";
+import {useGroups} from "/src/hooks/groups/useGroups.ts";
 
 const GroupsList = () => {
 
     const [groups, setGroups] = useState([])
     const [fetching, setFetching] = useState(true)
+
+    const pageSize = 10
 
     const refetch = () => {
         setGroups([])
@@ -20,12 +23,12 @@ const GroupsList = () => {
 
     useEffect(() => {
 
-        const pageSize = 10
-
         searchGroups(queryPageIndex, pageSize).then(data => {
             setGroups([...groups, ...data["groups"]])
             setGroupsPage(queryPageIndex + 1)
-        }).finally(() => setFetching(false))
+        }).finally(() => {
+            setFetching(false)
+        })
 
     }, [fetching])
 
@@ -33,18 +36,16 @@ const GroupsList = () => {
         refetch()
     }, [course, education_type, query, selectedFaculties])
 
-    useEffect(() => {
-        document.addEventListener("scroll", scrollHandler)
-        return function () {
-            document.removeEventListener("scroll", scrollHandler)
-        }
-    }, [])
 
-    const scrollHandler = async (e) => {
-        if (e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight) < 200) {
-            setFetching(true)
-        }
-    }
+    const {ref, inView} = useInView({
+        threshold: 1,
+        delay: 1000
+    })
+
+    useEffect(() => {
+        setFetching(true)
+    }, [inView]);
+
 
     const cards = groups.map(group  => (
         <GroupCard group={group} key={group.id} refetch={refetch}/>
@@ -60,9 +61,11 @@ const GroupsList = () => {
 
                 <AnimatePresence>
 
-                    { cards }
+                    {cards}
 
                 </AnimatePresence>
+
+                <div ref={ref}/>
 
             </motion.div>
         </div>

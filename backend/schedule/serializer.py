@@ -4,6 +4,11 @@ from .models import *
 
 
 class FacultySerializer(serializers.ModelSerializer):
+    image = serializers.SerializerMethodField()
+
+    def get_image(self, faculty):
+        return faculty.image.url.replace("minio", "localhost", 1)
+
     class Meta:
         model = Faculty
         fields = "__all__"
@@ -18,14 +23,9 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    access_token = serializers.SerializerMethodField()
-
-    def get_access_token(self, user):
-        return self.context.get("access_token", "")
-
     class Meta:
         model = CustomUser
-        fields = ('id', 'name', 'email', 'is_moderator', 'access_token')
+        fields = ('id', 'name', 'email', 'is_moderator')
 
 
 class LessonSerializer(serializers.ModelSerializer):

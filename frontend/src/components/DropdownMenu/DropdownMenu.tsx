@@ -2,8 +2,8 @@ import {useState} from "react";
 import {FaCaretDown} from "react-icons/fa";
 import {DropdownMenuList} from "../../utils/types";
 import "./DropdownMenu.sass"
-import useComponentVisible from "../../hooks/other/useComponentVisible";
 import styled from "styled-components";
+import useComponentVisible from "/src/hooks/other/useComponentVisible.ts";
 
 const DropdownMenu = ({ options, selectedOption, setSelectedOption, placeholder="Не выбран", width=300 }: DropdownMenuList) => {
     const [isExpanded, setIsExpanded] = useState<boolean>(false)

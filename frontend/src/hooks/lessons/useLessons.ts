@@ -7,8 +7,7 @@ import {
 	updateStatus,
 	updateUser
 } from "../../store/lessons/lessonsSlice";
-import {useToken} from "../users/useToken";
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 
 export function useLessons() {
 	const queryPageIndex = useSelector(state => state.lessons.queryPageIndex)
@@ -49,8 +48,6 @@ export function useLessons() {
 
 		const offset = queryPageIndex * queryPageSize
 
-		const {access_token} = useToken()
-
 		const {data} = await api.get(`lessons/search`, {
 			params: {
 				status: status,
@@ -58,9 +55,6 @@ export function useLessons() {
 				date_end: date.end,
 				offset: offset,
 				limit: queryPageSize
-			},
-			headers: {
-				'authorization': access_token
 			}
 		})
 

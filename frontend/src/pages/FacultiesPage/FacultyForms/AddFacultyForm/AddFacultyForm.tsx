@@ -7,16 +7,13 @@ import {variables} from "../../../../utils/variables";
 import {useState} from "react";
 import {useFaculties} from "../../../../hooks/faculties/useFaculties";
 import {errorMessage, successMessage} from "../../../../utils/toasts";
-import {useToken} from "../../../../hooks/users/useToken";
-import {api} from "../../../../utils/api";
+import {api} from "/src/modules/api.ts";
 
 const AddFacultyForm = () => {
 
     const {isOpen, faculty, updateFacultyName, updateFacultyImage, closeForm} = useFacultyAddForm()
 
     const { setFaculties } = useFaculties();
-
-    const {access_token} = useToken()
 
     const [img, setImg] = useState<File | undefined>()
 
@@ -41,8 +38,7 @@ const AddFacultyForm = () => {
 
             const response = await api.post(`faculties/create/`, {}, {
                 headers: {
-                    'content-type': 'multipart/form-data',
-                    'authorization': access_token
+                    'content-type': 'multipart/form-data'
                 }
             })
 
@@ -72,8 +68,7 @@ const AddFacultyForm = () => {
 
             const response = await api.put(`faculties/${faculty_id}/update/`, form_data, {
                 headers: {
-                    'content-type': 'multipart/form-data',
-                    'authorization': access_token
+                    'content-type': 'multipart/form-data'
                 }
             })
 

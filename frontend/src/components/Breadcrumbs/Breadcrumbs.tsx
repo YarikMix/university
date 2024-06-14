@@ -14,7 +14,7 @@ const Breadcrumbs = () => {
     let currentLink = ''
 
     const topics = {
-        "groups-list": "Список групп",
+        "groups": "Список групп",
         "groups-table": "Таблица групп",
         "groups": "Группы",
         "faculties": "Факультеты",

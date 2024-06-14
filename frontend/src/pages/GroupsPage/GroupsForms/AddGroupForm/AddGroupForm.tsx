@@ -4,10 +4,9 @@ import PopUpWindow from "../../../../components/popUpWindow/popUpWindow";
 import DropdownMenu from "../../../../components/DropdownMenu/DropdownMenu";
 import {COURSES, EDUCATION_TYPES} from "../../../../utils/consts";
 import {useGroups} from "../../../../hooks/groups/useGroups";
-import {useToken} from "../../../../hooks/users/useToken";
 import {useGroupAddForm} from "../../../../hooks/groups/useGroupAddForm";
 import {infoMessage, successMessage} from "../../../../utils/toasts";
-import {api} from "../../../../utils/api";
+import {api} from "/src/modules/api.ts";
 
 const AddGroupForm = ({refetch, gotoPage}) => {
 
@@ -19,8 +18,6 @@ const AddGroupForm = ({refetch, gotoPage}) => {
         e.preventDefault()
     }
 
-    const {access_token} = useToken()
-
     const createGroup = async () => {
 
         if (group.faculty.id == -1) {
@@ -28,11 +25,7 @@ const AddGroupForm = ({refetch, gotoPage}) => {
             return
         }
 
-        const response = await api.post(`groups/create/`, {},{
-            headers: {
-                'authorization': access_token
-            }
-        })
+        const response = await api.post(`groups/create/`)
 
         if (response.status == 200){
             const group_id = response.data["id"]
@@ -42,11 +35,7 @@ const AddGroupForm = ({refetch, gotoPage}) => {
     }
 
     const updateGroup = async (group_id) => {
-        await api.put(`groups/${group_id}/update_faculty/${group.faculty.id}/`,{}, {
-            headers: {
-                'authorization': access_token
-            }
-        })
+        await api.put(`groups/${group_id}/update_faculty/${group.faculty.id}/`)
 
         const data = {
             "id": group.id,
@@ -58,11 +47,7 @@ const AddGroupForm = ({refetch, gotoPage}) => {
             "year_end": group.year_end
         }
 
-        const response = await api.put(`groups/${group_id}/update/`, data, {
-            headers: {
-                'authorization': access_token
-            }
-        })
+        const response = await api.put(`groups/${group_id}/update/`, data)
 
         if (response.status == 200)
         {

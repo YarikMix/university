@@ -15,10 +15,7 @@ SECRET_KEY = 'django-insecure-q29f5!&+(5&l_s039$o-6l(eg(%7eljyo$id)&!%+wfg#5)0%-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-REDIS_HOST = 'localhost'
-REDIS_PORT = '6379'
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'django']
 
 # Application definition
 
@@ -31,15 +28,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'schedule',
     'drf_yasg',
-    'rest_framework',
-    'corsheaders'
+    'rest_framework'
 ]
 
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -73,10 +68,12 @@ WSGI_APPLICATION = 'university.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'university',
-        'USER': 'yaroslav',
-        'PASSWORD': 'yaroslav',
+        'ENGINE': 'django.db.backends.postgresql',  # Используется PostgreSQL
+        'NAME': 'postgres',  # Имя базы данных
+        'USER': 'postgres',  # Имя пользователя
+        'PASSWORD': 'postgres',  # Пароль пользователя
+        'HOST': 'pgdb',  # Наименование контейнера для базы данных в Docker Compose
+        'PORT': '5432',  # Порт базы данных
     }
 }
 
@@ -122,17 +119,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",
-]
-
-CORS_ALLOW_CREDENTIALS = True
-
-CORS_ALLOW_HEADERS = [
-    "Authorization",
-    "Content-Type"
-]
-
 AUTH_USER_MODEL = 'schedule.CustomUser'
 
 JWT = {
@@ -146,7 +132,7 @@ JWT = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://" + REDIS_HOST + ":" + REDIS_PORT,
+        "LOCATION": "redis://redis",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -155,8 +141,7 @@ CACHES = {
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 AWS_STORAGE_BUCKET_NAME = 'images'
-AWS_ACCESS_KEY_ID = '4WaDxNJf1GH6qjhjy6ER'
-AWS_SECRET_ACCESS_KEY = 'G11EkeAc7RJkfNQ1QsHBU8eOI59f3IwHx5JoI16u'
-AWS_S3_ENDPOINT_URL = 'http://127.0.0.1:9000'
-
-REMOTE_WEB_SERVICE_AUTH_TOKEN = 123
+AWS_ACCESS_KEY_ID = 'minio'
+AWS_SECRET_ACCESS_KEY = 'minio123'
+AWS_S3_ENDPOINT_URL = "http://minio:9000"
+AWS_S3_USE_SSL = False

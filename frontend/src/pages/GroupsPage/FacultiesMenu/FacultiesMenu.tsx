@@ -3,7 +3,7 @@ import {FacultyItemAny} from "../../../utils/consts";
 import {useGroups} from "../../../hooks/groups/useGroups";
 import FacultyItem from "./FacultyItem/FacultyItem";
 import "./FacultsMenu.sass"
-import {api} from "../../../utils/api";
+import {api} from "/src/modules/api.ts";
 
 const FacultiesMenu = () => {
     const {faculties, setFaculties} = useGroups()

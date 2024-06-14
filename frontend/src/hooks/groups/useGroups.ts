@@ -1,8 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux';
 import {updateGroups, updateCourse, updateEducationType, updateQuery, updateFaculties, updateSelectedFaculties, pageChanged, pageSizeChanged, totalCountChanged} from "../../store/groups/groupsSlice";
-import {api} from "../../utils/api";
-import {useToken} from "../users/useToken";
 import {useDraftLesson} from "../lessons/useDraftLesson";
+import {api} from "../../modules/api.ts";
 
 export function useGroups() {
 	const groups = useSelector(state => state.groups.groups);
@@ -17,7 +16,6 @@ export function useGroups() {
 
 	const {fetchLesson} = useDraftLesson()
 
-	const {access_token} = useToken()
 
 	const dispatch = useDispatch()
 
@@ -62,9 +60,6 @@ export function useGroups() {
 		const offset = pageNumber * pageSize
 
 		const {data} = await api.get(`groups/search/`, {
-			headers: {
-				'authorization': access_token
-			},
 			params: {
 				course: course,
 				education_type: education_type,
@@ -82,11 +77,7 @@ export function useGroups() {
 	}
 
 	const deleteGroup = async (group) => {
-		await api.delete(`groups/${group.id}/delete/`, {
-			headers: {
-				'authorization': access_token
-			}
-		})
+		await api.delete(`groups/${group.id}/delete/`)
 	}
 	
 	return {

@@ -9,7 +9,7 @@ import {variables} from "../../utils/variables";
 import {useFacultyAddForm} from "../../hooks/faculties/useFacultyAddForm";
 import FacultyForms from "./FacultyForms/FacultyForms";
 import {useAuth} from "../../hooks/users/useAuth";
-import {api} from "../../utils/api";
+import {api} from "../../modules/api.ts";
 
 const FacultiesPage = () => {
 
@@ -19,9 +19,6 @@ const FacultiesPage = () => {
 
 	const { faculties, setFaculties, query, setQuery } = useFaculties()
 
-	const cards = faculties.map(faculty  => (
-		<FacultyCard faculty={faculty} key={faculty.id}/>
-	))
 
 	const searchFaculties = async () => {
 
@@ -40,6 +37,9 @@ const FacultiesPage = () => {
 		searchFaculties()
 	}, [query])
 
+    const cards = faculties.map(faculty  => (
+        <FacultyCard faculty={faculty} key={faculty.id}/>
+    ))
 
 	return (
 		<div className="faculties-wrapper">
