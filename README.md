@@ -5,8 +5,8 @@
 * Бэкенд: Django REST Framework, JWT
 * Фронтенд: React, React Query, Redux Toolkit, Sass, Styled Components, Адаптивный дизайн
 * База данных: PostgreSQL, Redis
-* Сервер статики: Minio
-* Другие используемые технологии: Docker
+* S3: Minio
+* Другие используемые технологии: Docker, nginx
 
 ## Основные страницы сайта
 
