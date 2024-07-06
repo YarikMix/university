@@ -2,11 +2,11 @@
 
 Веб-приложение для составления расписания учебных групп МГТУ
 
-* Бэкенд: Django REST Framework
-* Фронтенд: React, React Query, Redux Toolkit
-* База данных: PostgreSQL
+* Бэкенд: Django REST Framework, JWT
+* Фронтенд: React, React Query, Redux Toolkit, Sass, Styled Components, Адаптивный дизайн
+* База данных: PostgreSQL, Redis
 * Сервер статики: Minio
-* Другие используемые технологии: Redis, JWT, Sass, Адаптивный дизайн
+* Другие используемые технологии: Docker
 
 ## Основные страницы сайта
 
